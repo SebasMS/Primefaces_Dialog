@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Dialog</title>
+        <style>    
+            body {
+                background: url("resources/images/table.jpg");
+                margin: 0;
+                padding: 2em;
+                font-family: geneva,arial,helvetica,sans-serif;
+                font-size: 80%;
+            }
+            .btn {
+                margin: 0;
+                padding:1em;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Dialog</h1>
+        <h:form>
+            <!--Mensajes-->
+            <p:growl id="message" showDetail="true" />
+            <p:growl id="growl" sticky="true" showDetail="true" />
+            
+            <!--Botones que activan los Dialogs-->
+            <h:panelGrid columns="8" cellpadding="5">
+                <p:commandButton class="btn" value="Básico" type="button" icon="ui-icon-star" onclick="PF('dlg1').show();" />
+                <p:commandButton class="btn" value="Modal" type="button" icon="ui-icon-star" onclick="PF('dlg2').show();" />
+                <p:commandButton class="btn" value="Efectos" type="button" icon="ui-icon-star" onclick="PF('dlg3').show();" />
+                <p:commandButton class="btn" value="Dinámico" type="button" icon="ui-icon-star" onclick="PF('dlg4').show();"/>
+                <p:commandButton class="btn" value="Focus Dinámico" type="button" icon="ui-icon-extlink" onclick="PF('dlg5').show();" />
+                <p:commandButton class="btn" value="Min/Max" type="button" icon="ui-icon-star" onclick="PF('dlg6').show();" />
+                <p:commandButton class="btn" value="RTL" type="button" icon="ui-icon-star" onclick="PF('dlg7').show();" />
+                <p:commandButton class="btn" value="Destruir el mundo" icon="ui-icon-star" actionListener="#{dialogView.destroyWorld}" update="message">
+                    <p:confirm header="Confirmación" message="¿Está seguro de hacerlo?" icon="ui-icon-alert" />
+                </p:commandButton>
+            </h:panelGrid>
+
+            <!--Dialog Básico-->
+            <p:dialog header="Dialog Básico" widgetVar="dlg1" minHeight="40" closeOnEscape="true" closable="false">
+                <h:outputText value="Presiona la tecla ESC para salir." />
+            </p:dialog>
+
+            <!--Dialog Modal-->
+            <p:dialog header="Dialog Modal" widgetVar="dlg2" modal="true" height="100" closeOnEscape="true" resizable="false">
+                <h:outputText value="Este es un Dialog Modal." />
+            </p:dialog>   
+
+            <!--Dialog Con Efectos-->
+            <p:dialog header="Efectos" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100" closeOnEscape="true" draggable="false">
+                <h:outputText value="Este Dialog tiene efectos especiales." />
+            </p:dialog>
+            
+            <!--Dialog Dinámico-->
+            <p:dialog header="Dialog Dinámico" widgetVar="dlg4" dynamic="true" closeOnEscape="true" resizable="false" closable="false" draggable="false">
+               <h:outputText value="Presiona la tecla ESC para salir." />
+            </p:dialog>
+            
+            <!--Dialog Con Focus-->
+            <p:dialog header="Focus Dinámico" widgetVar="dlg5" focus="age" closeOnEscape="true" resizable="false" closable="false" draggable="false">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="name" value="Nombres:" />
+                    <p:inputText id="name" label="name" />
+
+                    <h:outputLabel for="surname" value="Apellidos:" />
+                    <p:inputText id="surname" label="surname" />
+
+                    <h:outputLabel for="age" value="Edad:" />
+                    <p:inputText id="age" label="age" />
+                </h:panelGrid>
+            </p:dialog>
+            
+            <!--Dialog Minimizar/Maximizar-->
+            <p:dialog header="Dialog" widgetVar="dlg6" minimizable="true" maximizable="true">
+                <h:outputText value="Este Dialog puede ser Maximizado o Minimizado" />
+            </p:dialog>            
+            
+            <!--Dialog Con RTL-->
+            <p:dialog header="En Japón" widgetVar="dlg7" modal="true" dir="rtl" width="400" footer="Gran invasión y Tnasi" resizable="false">
+                <h:outputText value="T. No asalto Alsosevn con la guerra sin el Congreso, es la página global y entrega. Rollo fue llamado la liga. En todos los intentos de atacar a la invasión, fue la inauguración de lo que fue y en Agregar. Los actuales mínimos Bretaña, países. Io campos a continuación latinos." />
+            </p:dialog>
+
+            <!--Dialog De Confirmación-->
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode" closable="false" closeOnEscape="true">
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </h:form>
+    </h:body>
+</html>
